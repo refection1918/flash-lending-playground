@@ -1,0 +1,54 @@
+[profile.default]
+src = 'src'
+out = 'out'
+libs = ['lib']
+# via-ir = true
+# Added the following to prevent OutOfGas error
+memory_limit = 1073741824
+gas_limit = "18446744073709551615"
+
+# Reference: https://rpc.info/
+
+[rpc_endpoints]
+arbitrum = "https://rpc.ankr.com/arbitrum"
+avalanche = "https://rpc.ankr.com/avalanche"
+bsc = "https://rpc.ankr.com/bsc"
+celo = "https://rpc.ankr.com/celo"
+cronos = "https://evm-cronos.crypto.org"
+elastos = "https://api.elastos.io/eth"
+ethereum = "https://1rpc.io/eth"
+fantom = "https://rpc.ankr.com/fantom"
+fuse = "https://rpc.fuse.io"
+gnosis = "https://rpc.ankr.com/gnosis"
+harmony = "https://api.harmony.one"
+heco = "https://http-mainnet-node.huobichain.com"
+hoo = "https://http-mainnet.hoosmartchain.com"
+iotex = "https://babel-api.mainnet.iotex.io"
+kucoin = "https://rpc-mainnet.kcc.network"
+moonriver = "https://moonriver.public.blastapi.io"
+nahmii = "https://l2.nahmii.io"
+near = "https://rpc.ankr.com/near"
+okex = "https://exchainrpc.okex.org"
+optimism = "https://rpc.ankr.com/optimism"
+pando = "https://eth-rpc-api.pandoproject.org/rpc"
+polygon = "https://rpc.ankr.com/polygon"
+smartbch = "https://smartbch.fountainhead.cash/mainnet"
+solana = "https://rpc.ankr.com/solana"
+telos = "https://mainnet.telos.net/evm"
+ubiq = "https://rpc.octano.dev"
+
+# See more config options https://github.com/gakonst/foundry/tree/master/config
+
+[fmt]
+line_length = 120
+tab_width = 4
+bracket_spacing=false
+int_types = "long"
+func_attrs_with_params_multiline = false
+quote_style = "double"
+number_underscore = "thousands"
+multiline_func_header = "params_first"
+single_line_statement_blocks = 'preserve'
+variable_override_spacing = true
+wrap_comments = false
+ignore = []
