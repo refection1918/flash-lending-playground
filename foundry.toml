@@ -12,6 +12,7 @@ gas_limit = "18446744073709551615"
 [rpc_endpoints]
 arbitrum = "https://rpc.ankr.com/arbitrum"
 avalanche = "https://rpc.ankr.com/avalanche"
+boba_read = "https://lightning-replica.boba.network"
 bsc = "https://rpc.ankr.com/bsc"
 celo = "https://rpc.ankr.com/celo"
 cronos = "https://evm-cronos.crypto.org"
