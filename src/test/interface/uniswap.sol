@@ -1,9 +1,9 @@
-interface Uni_Pair_V2 {
-    event Approval(
-        address indexed owner,
-        address indexed spender,
-        uint256 value
-    );
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.19;
+
+import "interface/ethereum_blockchain.sol";
+
+interface Uni_Pair_V2 is IERC20 {
     event Burn(
         address indexed sender,
         uint256 amount0,
@@ -20,7 +20,6 @@ interface Uni_Pair_V2 {
         address indexed to
     );
     event Sync(uint112 reserve0, uint112 reserve1);
-    event Transfer(address indexed from, address indexed to, uint256 value);
 
     function DOMAIN_SEPARATOR() external view returns (bytes32);
 
@@ -28,17 +27,9 @@ interface Uni_Pair_V2 {
 
     function PERMIT_TYPEHASH() external view returns (bytes32);
 
-    function allowance(address, address) external view returns (uint256);
-
-    function approve(address spender, uint256 value) external returns (bool);
-
-    function balanceOf(address) external view returns (uint256);
-
     function burn(
         address to
     ) external returns (uint256 amount0, uint256 amount1);
-
-    function decimals() external view returns (uint8);
 
     function factory() external view returns (address);
 
@@ -56,8 +47,6 @@ interface Uni_Pair_V2 {
     function kLast() external view returns (uint256);
 
     function mint(address to) external returns (uint256 liquidity);
-
-    function name() external view returns (string memory);
 
     function nonces(address) external view returns (uint256);
 
@@ -84,23 +73,11 @@ interface Uni_Pair_V2 {
         bytes memory data
     ) external;
 
-    function symbol() external view returns (string memory);
-
     function sync() external;
 
     function token0() external view returns (address);
 
     function token1() external view returns (address);
-
-    function totalSupply() external view returns (uint256);
-
-    function transfer(address to, uint256 value) external returns (bool);
-
-    function transferFrom(
-        address from,
-        address to,
-        uint256 value
-    ) external returns (bool);
 }
 
 interface Uni_Router_V3 {

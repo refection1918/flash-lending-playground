@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import "./celer__common.sol";
+import "./celer_etherscan__common.sol";
 import "openzeppelin-contracts/utils/cryptography/ECDSA.sol";
 
 contract cBridgeLPTest is CelerCommon {

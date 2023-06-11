@@ -1,5 +1,7 @@
 forge-std/=lib/forge-std/src/
+ds-test/=lib/forge-std/lib/ds-test/src/
 openzeppelin-contracts/=lib/openzeppelin/contracts/contracts/
 interface/=src/test/interface/
 flow/=src/test/flow/
 helper/=src/test/helper/
+template/=src/test/template/

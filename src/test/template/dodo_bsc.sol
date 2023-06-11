@@ -1,16 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import "forge-std/Test.sol";
-import "interface/cheat_codes.sol";
+import "template/ds_test_common.sol";
 import "interface/dodo_flashloan.sol";
 import "interface/ethereum_blockchain.sol";
 import "interface/uniswap.sol";
 
-contract ContractTest is DSTest{
-    // Foundry
-    CheatCodes cheats = CheatCodes(0x7109709ECfa91a80626fF3989D68f67F5b1DD12D);
-
+contract ContractTest is DSCommon {
     // Flashloan provider
     // DPPOracle Contract
     DVM dodo = DVM(0x9ad32e3054268B849b84a8dBcC7c8f7c52E4e69A);

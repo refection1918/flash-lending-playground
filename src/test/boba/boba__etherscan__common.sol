@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import "./boba__common.sol";
+import "template/ds_test_common.sol";
 import "interface/boba_etherscan_blockchain.sol";
 
-contract BobaEtherscanCommon is BobaCommon {
+contract BobaEtherscanCommon is DSCommon {
     // Flashloan provider
 
     // Governance

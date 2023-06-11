@@ -1,19 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import "forge-std/Test.sol";
-import "forge-std/StdStorage.sol";
-import "openzeppelin-contracts/utils/math/SafeMath.sol";
+import "template/ds_test_common.sol";
+import "interface/cronos_etherscan_blockchain.sol";
+import "interface/cronos_etherscan_flashloan.sol";
 
-import "interface/cheat_codes.sol";
-import "interface/cronos_blockchain.sol";
-import "interface/cronos_flashloan.sol";
-import "helper/helper_library.sol";
-
-contract CronosCommon is DSTest {
-    // Foundry
-    CheatCodes cheats = CheatCodes(0x7109709ECfa91a80626fF3989D68f67F5b1DD12D);
-
+contract CronosCommon is DSCommon {
     // Flashloan provider
     ISwapFlashLoan xUSD_3Pool = ISwapFlashLoan(0x43F3671b099b78D26387CD75283b826FD9585B60);
 
@@ -79,22 +71,6 @@ contract CronosCommon is DSTest {
     // Alternatively, generate either using the following or run getPair from the Read Contract of Factory contract above:
     // Pair = Factory.getPair(address(TONIC), address(VVS));
     // console.log("TONIC/VVS Pair: %s", Pair);
-
-    // https://mirror.xyz/brocke.eth/PnX7oAcU4LJCxcoICiaDhq_MUUu9euaM8Y5r465Rd2U
-    using stdStorage for StdStorage;
-    StdStorage stdstore;
-
-    function writeTokenBalance(
-        address owner,
-        address token,
-        uint256 amount
-    ) internal {
-        stdstore
-            .target(token)
-            .sig(IERC20(token).balanceOf.selector)
-            .with_key(owner)
-            .checked_write(amount);
-    }
 
     function setUp() public virtual {
         cheats.label(address(xUSD_3Pool), "xUSD_3Pool");

@@ -9,7 +9,7 @@ import "interface/cheat_codes.sol";
 import "interface/etherscan_blockchain.sol";
 import "helper/helper_library.sol";
 
-contract BobaCommon is DSTest {
+contract DSCommon is DSTest {
     // Foundry
     CheatCodes cheats = CheatCodes(0x7109709ECfa91a80626fF3989D68f67F5b1DD12D);
 

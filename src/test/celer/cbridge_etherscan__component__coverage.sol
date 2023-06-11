@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import "./celer__common.sol";
+import "./celer_etherscan__common.sol";
 
 contract cBridgeComponentTest is CelerCommon {
     using SafeMath for uint256;
@@ -19,112 +19,112 @@ contract cBridgeComponentTest is CelerCommon {
     // Governance / Authorization
     // ----------------------------------------------------------------------------
     function testFail__transferOwnership_0() public {
-        bridge.transferOwnership(address(0));
+        cbridge.transferOwnership(address(0));
     }
 
     function testFail__transferOwnership_this() public {
-        bridge.transferOwnership(address(this));
+        cbridge.transferOwnership(address(this));
     }
 
     function testFail__addGovernor_change_0() public {
-        console.log("BEFORE: isGovernor:", bridge.isGovernor(address(0)));
-        bridge.addGovernor(address(0));
-        console.log("AFTER: isGovernor:", bridge.isGovernor(address(0)));
+        console.log("BEFORE: isGovernor:", cbridge.isGovernor(address(0)));
+        cbridge.addGovernor(address(0));
+        console.log("AFTER: isGovernor:", cbridge.isGovernor(address(0)));
     }
 
     function testFail__addGovernor_this() public {
-        console.log("BEFORE: isGovernor:", bridge.isGovernor(address(this)));
-        bridge.addGovernor(address(this));
-        console.log("AFTER: isGovernor:", bridge.isGovernor(address(this)));
+        console.log("BEFORE: isGovernor:", cbridge.isGovernor(address(this)));
+        cbridge.addGovernor(address(this));
+        console.log("AFTER: isGovernor:", cbridge.isGovernor(address(this)));
     }
 
     function testFail__addPauser_0() public {
-        console.log("BEFORE: isPauser:", bridge.isPauser(address(0)));
-        bridge.addPauser(address(0));
-        console.log("AFTER: isPauser:", bridge.isPauser(address(0)));
+        console.log("BEFORE: isPauser:", cbridge.isPauser(address(0)));
+        cbridge.addPauser(address(0));
+        console.log("AFTER: isPauser:", cbridge.isPauser(address(0)));
     }
 
     function testFail__addPauser_this() public {
-        console.log("BEFORE: isPauser:", bridge.isPauser(address(this)));
-        bridge.addPauser(address(this));
-        console.log("AFTER: isPauser:", bridge.isPauser(address(this)));
+        console.log("BEFORE: isPauser:", cbridge.isPauser(address(this)));
+        cbridge.addPauser(address(this));
+        console.log("AFTER: isPauser:", cbridge.isPauser(address(this)));
     }
 
     function testFail__renounceGovernor() public {
-        bridge.renounceGovernor();
+        cbridge.renounceGovernor();
     }
 
     function testFail__renounceOwnership() public {
-        bridge.renounceOwnership();
+        cbridge.renounceOwnership();
     }
 
     function testFail__renouncePauser() public {
-        bridge.renouncePauser();
+        cbridge.renouncePauser();
     }
 
     function testFail__removeGovernor_0() public {
-        bridge.removeGovernor(address(0));
+        cbridge.removeGovernor(address(0));
     }
 
     function testFail__removeGovernor_this() public {
-        bridge.removeGovernor(address(this));
+        cbridge.removeGovernor(address(this));
     }
 
     function testFail__removePauser_0() public {
-        bridge.removePauser(address(0));
+        cbridge.removePauser(address(0));
     }
 
     function testFail__removePauser_this() public {
-        bridge.removePauser(address(this));
+        cbridge.removePauser(address(this));
     }
 
     function testFail__pause() public {
-        console.log("BEFORE: paused:", bridge.paused());
-        bridge.pause();
-        console.log("AFTER: paused:", bridge.paused());
+        console.log("BEFORE: paused:", cbridge.paused());
+        cbridge.pause();
+        console.log("AFTER: paused:", cbridge.paused());
     }
 
     function testFail__notifyResetSigners() public {
-        bridge.notifyResetSigners();
+        cbridge.notifyResetSigners();
     }
 
     function testFail__unpause() public {
-        bridge.unpause();
+        cbridge.unpause();
     }
 
     function testFail__setWrap_0() public {
-        bridge.setWrap(address(0));
+        cbridge.setWrap(address(0));
     }
 
     function testFail__setWrap() public {
-        bridge.setWrap(address(this));
+        cbridge.setWrap(address(this));
     }
 
     // ----------------------------------------------------------------------------
     // Parameter Change
     // ----------------------------------------------------------------------------
     function testFail__setDelayPeriod__min() public {
-        bridge.setDelayPeriod(0);
+        cbridge.setDelayPeriod(0);
     }
 
     function testFail__setDelayPeriod__max() public {
-        bridge.setDelayPeriod(type(uint256).max);
+        cbridge.setDelayPeriod(type(uint256).max);
     }
 
     function testFail__setEpochLength__min() public {
-        bridge.setEpochLength(0);
+        cbridge.setEpochLength(0);
     }
 
     function testFail__setEpochLength__max() public {
-        bridge.setEpochLength(type(uint256).max);
+        cbridge.setEpochLength(type(uint256).max);
     }
 
     function testFail__increaseNoticePeriod__min() public {
-        bridge.increaseNoticePeriod(0);
+        cbridge.increaseNoticePeriod(0);
     }
 
     function testFail__increaseNoticePeriod__max() public {
-        bridge.increaseNoticePeriod(type(uint256).max);
+        cbridge.increaseNoticePeriod(type(uint256).max);
     }
 
     // ----------------------------------------------------------------------------

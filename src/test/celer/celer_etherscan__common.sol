@@ -1,20 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import "forge-std/Test.sol";
-import "forge-std/StdStorage.sol";
-import "openzeppelin-contracts/utils/math/SafeMath.sol";
-
-import "interface/cheat_codes.sol";
-import "interface/celer_blockchain.sol";
-import "helper/helper_library.sol";
+import "template/ds_test_common.sol";
+import "interface/celer_etherscan_blockchain.sol";
 
 import "./Pb.sol";
 
-contract CelerCommon is DSTest {
-    // Foundry
-    CheatCodes cheats = CheatCodes(0x7109709ECfa91a80626fF3989D68f67F5b1DD12D);
-
+contract CelerCommon is DSCommon {
     // Flashloan provider
 
     // Protocol
@@ -32,10 +24,6 @@ contract CelerCommon is DSTest {
     IStaking staking = IStaking(payable(0x8a4B4C2aCAdeAa7206Df96F00052e41d74a015CE));
     IStakingReward staking_reward = IStakingReward(0xb01fd7Bc0B3c433e313bf92daC09FF3942212b42);
     IBridge cbridge = IBridge(payable(0x5427FEFA711Eff984124bFBB1AB6fbf5E3DA1820));
-
-    // https://mirror.xyz/brocke.eth/PnX7oAcU4LJCxcoICiaDhq_MUUu9euaM8Y5r465Rd2U
-    using stdStorage for StdStorage;
-    StdStorage stdstore;
 
     using Pb for Pb.Buffer; // so we can call Pb funcs on Buffer obj
 
@@ -59,18 +47,6 @@ contract CelerCommon is DSTest {
         uint256 amount; // tag: 5
         bytes32 refid; // tag: 6
     } // end struct WithdrawMsg
-
-    function writeTokenBalance(
-        address owner,
-        address token,
-        uint256 amount
-    ) internal {
-        stdstore
-            .target(token)
-            .sig(IERC20(token).balanceOf.selector)
-            .with_key(owner)
-            .checked_write(amount);
-    }
 
     function setUp() public virtual {
         // Assign label to Flashloan provider
