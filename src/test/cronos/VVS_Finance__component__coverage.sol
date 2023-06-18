@@ -286,6 +286,7 @@ contract ContractTest is CronosCommon {
         for (uint pid = 0; pid < last_pid; pid++) {
             (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(pid);
 
+            // Determine if the address is a smart contract
             if (ContractHelper.isContract(lpToken)) {
                 if (pid == 0) {
                     console.log("%s, %d, VVS Token", lpToken, pid);

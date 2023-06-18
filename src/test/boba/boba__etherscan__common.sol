@@ -33,7 +33,7 @@ contract BobaEtherscanCommon is DSCommon {
     IERC20 DODO = IERC20(0x43Dfc4159D86F3A37A5A4B3D4580b888ad7d4DDd);
 
     // Liquidity Pools
-    IL1StandardBridge proxy__L1__StandardBridge = IL1StandardBridge(payable(0xdc1664458d2f0B6090bEa60A8793A4E66c2F1c00));
+    IL1ChugSplashProxy proxy__L1__StandardBridge = IL1ChugSplashProxy(payable(0xdc1664458d2f0B6090bEa60A8793A4E66c2F1c00));
     address L1__StandardBridge = address(0xAf41c681143Cb91f218959375f4452A604504833);
 
     function setUp() public virtual {

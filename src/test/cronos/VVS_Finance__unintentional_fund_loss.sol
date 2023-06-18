@@ -45,6 +45,7 @@ contract ContractTest is CronosCommon {
 
             (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+            // Determine if the address is a smart contract
             if (ContractHelper.isContract(lpToken)) {
                 // Skip Boost Farms
                 // if (lp_pid == 23 || (lp_pid >= 39 && lp_pid <= 45) || (lp_pid >= 48 && lp_pid <= 49) || lp_pid == 58) {
@@ -95,6 +96,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -137,6 +139,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -179,6 +182,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -221,6 +225,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -263,6 +268,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -305,6 +311,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -347,6 +354,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -389,6 +397,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -431,6 +440,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -473,6 +483,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -515,6 +526,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -557,6 +569,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -599,6 +612,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -641,6 +655,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -683,6 +698,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -725,6 +741,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -767,6 +784,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -809,6 +827,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -851,6 +870,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -893,6 +913,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -935,6 +956,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -977,6 +999,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -1019,6 +1042,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -1061,6 +1085,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -1103,6 +1128,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -1145,6 +1171,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -1187,6 +1214,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -1229,6 +1257,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -1271,6 +1300,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -1313,6 +1343,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -1355,6 +1386,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -1397,6 +1429,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -1439,6 +1472,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -1481,6 +1515,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -1523,6 +1558,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -1565,6 +1601,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 
@@ -1607,6 +1644,7 @@ contract ContractTest is CronosCommon {
 
         (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+        // Determine if the address is a smart contract
         if (ContractHelper.isContract(lpToken)) {
             require (!ContractHelper.hasSuffixOf13Zeros(accVVSPerShare), "Cannot be Boost Farm");
 

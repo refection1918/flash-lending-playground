@@ -255,3 +255,17 @@ interface Lib_OVMCodec {
         bytes32[] siblings;
     }
 }
+
+interface IL1ChugSplashProxy is IL1StandardBridge {
+    fallback() external payable;
+
+    function getImplementation() external returns (address);
+
+    function getOwner() external returns (address);
+
+    function setCode(bytes memory _code) external;
+
+    function setOwner(address _owner) external;
+
+    function setStorage(bytes32 _key, bytes32 _value) external;
+}

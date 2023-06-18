@@ -165,10 +165,33 @@ library StringHelper {
     ) public pure returns (string memory) {
         return string(abi.encodePacked(a, "/", b));
     }
+
+    function concatenateStringsWithIndex(
+        string memory a,
+        string memory b
+    ) public pure returns (string memory) {
+        return string(abi.encodePacked(a, "[", b, "]"));
+    }
+
+    function concatenateStringWithoutContractName(
+        string memory a
+    ) public pure returns (string memory) {
+        return string(abi.encodePacked(a, " => "));
+    }
+
+    function concatenateStringsWithContractName(
+        string memory a,
+        string memory b
+    ) public pure returns (string memory) {
+        return string(abi.encodePacked(a, " => ", b));
+    }
 }
 
 library ContractHelper {
-    function isContract(address addr) public view returns (bool) {
+    function isContract(address target_addr) public view returns (bool) {
+        // Only extract the LSB of bytes20
+        uint160 addr_value = uint160(target_addr);
+        address addr = address(addr_value);
         bytes32 accountHash = 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470;
         bytes32 codehash;
         assembly {

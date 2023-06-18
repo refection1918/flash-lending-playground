@@ -44,6 +44,7 @@ contract ContractTest is CronosCommon {
 
             (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
 
+            // Determine if the address is a smart contract
             if (ContractHelper.isContract(lpToken)) {
                 if (ContractHelper.hasSuffixOf13Zeros(accVVSPerShare)) {
                     continue;
