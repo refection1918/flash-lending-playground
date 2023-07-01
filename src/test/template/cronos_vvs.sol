@@ -11,8 +11,8 @@ contract ContractTest is CronosCommon {
     uint256 constant req_flashloan_amount = 104_000 * 1e6;
     uint256 constant payback_fee_amount = (req_flashloan_amount * 1008) / 1000; // 0.8% fee
 
-    function setUp() public override {
-        super.setUp();
+    function setUp() public {
+        super.setUp2();
 
         cheats.createSelectFork("cronos", 8305182);
 
@@ -83,7 +83,7 @@ contract ContractTest is CronosCommon {
 
         // 2. Do actions with the borrowed token
         bytes32 paramsHash = keccak256(params);
-        
+
         if (paramsHash == keccak256(bytes("nothing"))) {
             console.log("nothing");
             return;

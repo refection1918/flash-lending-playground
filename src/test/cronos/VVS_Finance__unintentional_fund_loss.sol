@@ -10,8 +10,8 @@ contract ContractTest is CronosCommon {
     uint MAX_USDC = 10_000 * 1e9;
     uint MAX_FOR_VVS_PAIR = 443 * 1e9;
 
-    function setUp() public override {
-        super.setUp();
+    function setUp() public {
+        super.setUp2();
 
         cheats.createSelectFork("cronos", 8185555);
     }

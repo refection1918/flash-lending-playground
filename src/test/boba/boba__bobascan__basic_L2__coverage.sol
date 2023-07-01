@@ -56,8 +56,8 @@ contract Suicide_Attack_2 is BobaBobascanCommon {
 contract boba_bobascan_Basic_L2_Test is BobaBobascanCommon {
     using SafeMath for uint256;
 
-    function setUp() public override {
-        super.setUp();
+    function setUp() public {
+        super.setUp2();
 
         cheats.createSelectFork("boba_read", 1020646);
 

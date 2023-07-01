@@ -13,8 +13,8 @@ contract cBridgeLPTest is CelerCommon {
     uint256 constant req_flashloan_amount = 104_000 * 1e6;
     uint256 constant payback_fee_amount = (req_flashloan_amount * 1008) / 1000; // 0.8% fee
 
-    function setUp() public override {
-        super.setUp();
+    function setUp() public {
+        super.setUp2();
 
         cheats.createSelectFork("ethereum", 17321482);
 

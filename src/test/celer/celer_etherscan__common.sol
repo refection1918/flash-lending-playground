@@ -7,23 +7,29 @@ import "interface/celer_etherscan_blockchain.sol";
 import "./Pb.sol";
 
 contract CelerCommon is DSCommon {
-    // Flashloan provider
+    // Swap or Flashloan provider
 
     // Protocol
     // ISGN sgn = ISGN(0xCb4A7569a61300C50Cf80A2be16329AD9F5F8F9e);
     // IGovernance gov = IGovernance(0xea129aE043C4cB73DcB241AAA074F9E667641BA0);
-    IERC20 relay_executor_2 = IERC20(0x98E9D288743839e96A8005a6B51C770Bbf7788C0);
+    IERC20 relay_executor_2 =
+        IERC20(0x98E9D288743839e96A8005a6B51C770Bbf7788C0);
 
     // Tokens
-    ITetherToken USDT = ITetherToken(0xdAC17F958D2ee523a2206206994597C13D831ec7);
-    IFiatTokenV2_1 USDC = IFiatTokenV2_1(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48);
+    ITetherToken USDT =
+        ITetherToken(0xdAC17F958D2ee523a2206206994597C13D831ec7);
+    IFiatTokenV2_1 USDC =
+        IFiatTokenV2_1(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48);
     IMaskToken MASK = IMaskToken(0x69af81e73A73B40adF4f3d4223Cd9b1ECE623074);
     IWETH9 WETH = IWETH9(payable(0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2));
 
     // Liquidity Pools
-    IStaking staking = IStaking(payable(0x8a4B4C2aCAdeAa7206Df96F00052e41d74a015CE));
-    IStakingReward staking_reward = IStakingReward(0xb01fd7Bc0B3c433e313bf92daC09FF3942212b42);
-    IBridge cbridge = IBridge(payable(0x5427FEFA711Eff984124bFBB1AB6fbf5E3DA1820));
+    IStaking staking =
+        IStaking(payable(0x8a4B4C2aCAdeAa7206Df96F00052e41d74a015CE));
+    IStakingReward staking_reward =
+        IStakingReward(0xb01fd7Bc0B3c433e313bf92daC09FF3942212b42);
+    IBridge cbridge =
+        IBridge(payable(0x5427FEFA711Eff984124bFBB1AB6fbf5E3DA1820));
 
     using Pb for Pb.Buffer; // so we can call Pb funcs on Buffer obj
 
@@ -48,8 +54,10 @@ contract CelerCommon is DSCommon {
         bytes32 refid; // tag: 6
     } // end struct WithdrawMsg
 
-    function setUp() public virtual {
-        // Assign label to Flashloan provider
+    function setUp2() public virtual {
+        super.setUp1();
+
+        // Assign label to Swap or Flashloan provider
 
         // Assign label to protocol
         cheats.label(address(relay_executor_2), "Relay Executor 2");
@@ -68,13 +76,27 @@ contract CelerCommon is DSCommon {
 
     function get_sigs() public returns (bytes[] memory) {
         bytes[] memory sigs = new bytes[](7);
-        sigs[0] = hex"dbc47d4ba80be9227b17baa50f32a5b1e5a98c52546e74ad39deb68e7863c9cd42d8feefd16bd9e7b0d74d760c75664397c7f6b83ac414ce36f3c6e9db01780f1b";
-        sigs[1] = hex"097b31bef24d19a3528652b0b82617495a8fe83194d589347dfe15a6939b1e98271686635ddee053035882593919dd7159280776a5e95a995637bbdf601b7aa21c";
-        sigs[2] = hex"b91c8cdcacb4d2e7c2699975b76d484e79cb5dd57de0b952acfddb3d793e96df76459db7b90b731f745d1d75e00884e1f80430c2cd39f593f72864fb8cff033e1b";
-        sigs[3] = hex"465668b4a7114c0128a7d0b9350d39a39a9a0f65830afc7a19ea109a28a0955e4d8c9f6eb0228271b8ee46ebd7fd56d8bb3feab3fb2848b383cd598a148230831b";
-        sigs[4] = hex"df49a96f807a12435a87f4d8420e4592905cb02699de0a308443f8b705eaef681c96fc53f710d1ad5833109d707cdbf596411cd97edae1d9d5c6181076b0cdba1c";
-        sigs[5] = hex"227bff9546f23fdda7ccddae7d6fa87c1cee5a01178cf540e4da606baf54671027b1cbb59e1c82327d21e6a11440a619b02758e3db858409a8d17983702917c81c";
-        sigs[6] = hex"8104fc29800e8e2669ec7711a839a2a92505692afd21a32403a1129bdab5a7fe4866134ccde0616c589efd450d899071402c7ed6a9f1031a6d0d1acdd16ff90f1c";
+        sigs[
+            0
+        ] = hex"dbc47d4ba80be9227b17baa50f32a5b1e5a98c52546e74ad39deb68e7863c9cd42d8feefd16bd9e7b0d74d760c75664397c7f6b83ac414ce36f3c6e9db01780f1b";
+        sigs[
+            1
+        ] = hex"097b31bef24d19a3528652b0b82617495a8fe83194d589347dfe15a6939b1e98271686635ddee053035882593919dd7159280776a5e95a995637bbdf601b7aa21c";
+        sigs[
+            2
+        ] = hex"b91c8cdcacb4d2e7c2699975b76d484e79cb5dd57de0b952acfddb3d793e96df76459db7b90b731f745d1d75e00884e1f80430c2cd39f593f72864fb8cff033e1b";
+        sigs[
+            3
+        ] = hex"465668b4a7114c0128a7d0b9350d39a39a9a0f65830afc7a19ea109a28a0955e4d8c9f6eb0228271b8ee46ebd7fd56d8bb3feab3fb2848b383cd598a148230831b";
+        sigs[
+            4
+        ] = hex"df49a96f807a12435a87f4d8420e4592905cb02699de0a308443f8b705eaef681c96fc53f710d1ad5833109d707cdbf596411cd97edae1d9d5c6181076b0cdba1c";
+        sigs[
+            5
+        ] = hex"227bff9546f23fdda7ccddae7d6fa87c1cee5a01178cf540e4da606baf54671027b1cbb59e1c82327d21e6a11440a619b02758e3db858409a8d17983702917c81c";
+        sigs[
+            6
+        ] = hex"8104fc29800e8e2669ec7711a839a2a92505692afd21a32403a1129bdab5a7fe4866134ccde0616c589efd450d899071402c7ed6a9f1031a6d0d1acdd16ff90f1c";
         return sigs;
     }
 
@@ -107,30 +129,32 @@ contract CelerCommon is DSCommon {
         uint256[] memory powers = new uint256[](20);
 
         // Block: 17321482
-         powers[0] =  58017430330000000000000000;
-         powers[1] = 375359560282780000000000000;
-         powers[2] =  64009851920000000000000000;
-         powers[3] =  99129699420000000000000000;
-         powers[4] =  33355101190000000000000000;
-         powers[5] =  52996859290000000000000000;
-         powers[6] = 204585358100000000000000000;
-         powers[7] = 357732784813052544900122309;
-         powers[8] =  86935125656910000000000000;
-         powers[9] =  69034273610000000000000000;
+        powers[0] = 58017430330000000000000000;
+        powers[1] = 375359560282780000000000000;
+        powers[2] = 64009851920000000000000000;
+        powers[3] = 99129699420000000000000000;
+        powers[4] = 33355101190000000000000000;
+        powers[5] = 52996859290000000000000000;
+        powers[6] = 204585358100000000000000000;
+        powers[7] = 357732784813052544900122309;
+        powers[8] = 86935125656910000000000000;
+        powers[9] = 69034273610000000000000000;
         powers[10] = 331192749490000000000000000;
         powers[11] = 100636098270000000000000000;
         powers[12] = 249528699350000000000000000;
         powers[13] = 175795640370000000000000000;
-        powers[14] =  73788848100000000000000000;
+        powers[14] = 73788848100000000000000000;
         powers[15] = 150384202350000000000000000;
-        powers[16] =    111614731910000000000000;
-        powers[17] =  81572970450000000000000000;
+        powers[16] = 111614731910000000000000;
+        powers[17] = 81572970450000000000000000;
         powers[18] = 121127353300000000000000000;
-        powers[19] =  76006516000000000000000000;
+        powers[19] = 76006516000000000000000000;
         return powers;
     }
 
-    function encWithdrawMsg(WithdrawMsg memory m) internal returns (bytes memory encoded) {
+    function encWithdrawMsg(
+        WithdrawMsg memory m
+    ) internal returns (bytes memory encoded) {
         bytes memory buf;
 
         buf = abi.encodePacked(buf, Pb.encKey(1, Pb.WireType.Varint));
@@ -166,7 +190,9 @@ contract CelerCommon is DSCommon {
         return encoded;
     }
 
-    function getNonZeroValue(uint256 amount) internal returns (bytes memory value) {
+    function getNonZeroValue(
+        uint256 amount
+    ) internal returns (bytes memory value) {
         bytes memory packedAmount = abi.encodePacked(amount);
         uint256 offset = 0;
 
@@ -187,16 +213,17 @@ contract CelerCommon is DSCommon {
 
     function uint256ToBytes(uint256 x) internal returns (bytes memory b) {
         b = new bytes(32);
-        assembly { mstore(add(b, 32), x) }
+        assembly {
+            mstore(add(b, 32), x)
+        }
 
-        emit log_named_bytes(
-            "b",
-            b
-        );
+        emit log_named_bytes("b", b);
     }
 
     // Refer to PbPool.sol
-    function decWithdrawMsg(bytes memory raw) internal returns (WithdrawMsg memory m) {
+    function decWithdrawMsg(
+        bytes memory raw
+    ) internal returns (WithdrawMsg memory m) {
         Pb.Buffer memory buf = Pb.fromBytes(raw);
 
         uint256 tag;
@@ -227,7 +254,10 @@ contract CelerCommon is DSCommon {
         assembly {
             let m := mload(0x40)
             a := and(a, 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF)
-            mstore(add(m, 20), xor(0x140000000000000000000000000000000000000000, a))
+            mstore(
+                add(m, 20),
+                xor(0x140000000000000000000000000000000000000000, a)
+            )
             mstore(0x40, add(m, 52))
             b := m
         }
@@ -242,6 +272,8 @@ contract CelerCommon is DSCommon {
 
     function bytes32ToBytes(bytes32 x) internal returns (bytes memory b) {
         b = new bytes(32);
-        assembly { mstore(add(b, 32), x) }
+        assembly {
+            mstore(add(b, 32), x)
+        }
     }
 }

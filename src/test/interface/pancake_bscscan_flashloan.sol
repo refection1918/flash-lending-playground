@@ -3,6 +3,60 @@ pragma solidity ^0.8.19;
 
 import "interface/ethereum_blockchain.sol";
 
+// https://bscscan.com/address/0xbcfccbde45ce874adcb698cc183debcf17952812#code
+interface IPancakeFactory {
+    event PairCreated(
+        address indexed token0,
+        address indexed token1,
+        address pair,
+        uint256
+    );
+
+    function INIT_CODE_PAIR_HASH() external view returns (bytes32);
+
+    function allPairs(uint256) external view returns (address);
+
+    function allPairsLength() external view returns (uint256);
+
+    function createPair(
+        address tokenA,
+        address tokenB
+    ) external returns (address pair);
+
+    function feeTo() external view returns (address);
+
+    function feeToSetter() external view returns (address);
+
+    function getPair(address, address) external view returns (address);
+
+    function setFeeTo(address _feeTo) external;
+
+    function setFeeToSetter(address _feeToSetter) external;
+}
+
+// https://docs.pancakeswap.finance/developers/smart-contracts/pancakeswap-exchange/v3-contracts/pancakev3pool
+interface Uni_Pair_V3 {
+    function token0() external view returns (address);
+
+    function token1() external view returns (address);
+
+    function swap(
+        address recipient,
+        bool zeroForOne,
+        int256 amountSpecified,
+        uint160 sqrtPriceLimitX96,
+        bytes calldata data
+    ) external returns (int256 amount0, int256 amount1);
+
+    function flash(
+        address recipient,
+        uint256 amount0,
+        uint256 amount1,
+        bytes calldata data
+    ) external;
+}
+
+// https://docs.pancakeswap.finance/developers/smart-contracts/pancakeswap-exchange/v2-contracts/router-v2
 interface Uni_Pair_V2 is IERC20 {
     event Burn(
         address indexed sender,
@@ -80,6 +134,7 @@ interface Uni_Pair_V2 is IERC20 {
     function token1() external view returns (address);
 }
 
+// https://docs.pancakeswap.finance/developers/smart-contracts/pancakeswap-exchange/v3-contracts/smartrouterv3
 interface Uni_Router_V3 {
     struct ExactInputSingleParams {
         address tokenIn;

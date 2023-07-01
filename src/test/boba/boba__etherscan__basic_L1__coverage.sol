@@ -6,8 +6,8 @@ import "./boba__etherscan__common.sol";
 contract boba_etherscan_Basic_L1_Test is BobaEtherscanCommon {
     using SafeMath for uint256;
 
-    function setUp() public override {
-        super.setUp();
+    function setUp() public {
+        super.setUp2();
 
         cheats.createSelectFork("ethereum", 17405912);
         // cheats.createSelectFork("ethereum", 16989340);

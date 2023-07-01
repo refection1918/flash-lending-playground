@@ -6,36 +6,48 @@ import "interface/cronos_etherscan_blockchain.sol";
 import "interface/cronos_etherscan_flashloan.sol";
 
 contract CronosCommon is DSCommon {
-    // Flashloan provider
-    ISwapFlashLoan xUSD_3Pool = ISwapFlashLoan(0x43F3671b099b78D26387CD75283b826FD9585B60);
+    // Swap or Flashloan provider
+    ISwapFlashLoan xUSD_3Pool =
+        ISwapFlashLoan(0x43F3671b099b78D26387CD75283b826FD9585B60);
 
     // VVS Protocol
     IVVSZap Zap = IVVSZap(payable(0x8D13982c702FE7c6537529986dF67daBeAFc4C19));
     IVVSVault Vault = IVVSVault(0xA6fF77fC8E839679D4F7408E8988B564dE1A2dcD);
-    IVVSBoost Boost_Proxy = IVVSBoost(0x990E9683E6Ba5079CdB235838856029A50DAd84c);
-    IWorkbench Workbench = IWorkbench(0x6a2d178585806De5A2e5E7F9acFCE44680637284);
-    ICraftsman Craftsman = ICraftsman(0xDccd6455AE04b03d785F12196B492b18129564bc);
+    IVVSBoost Boost_Proxy =
+        IVVSBoost(0x990E9683E6Ba5079CdB235838856029A50DAd84c);
+    IWorkbench Workbench =
+        IWorkbench(0x6a2d178585806De5A2e5E7F9acFCE44680637284);
+    ICraftsman Craftsman =
+        ICraftsman(0xDccd6455AE04b03d785F12196B492b18129564bc);
     IRewarder Rewarder = IRewarder(0x862C41c4a9b3a21989585Fd92b66C7023FCf4C7D);
-    IVVSFactory Factory = IVVSFactory(0x3B44B2a187a7b3824131F8db5a74194D0a42Fc15);
-    IVVSRouter Router = IVVSRouter(payable(0x145863Eb42Cf62847A6Ca784e6416C1682b1b2Ae));
+    IVVSFactory Factory =
+        IVVSFactory(0x3B44B2a187a7b3824131F8db5a74194D0a42Fc15);
+    IVVSRouter Router =
+        IVVSRouter(payable(0x145863Eb42Cf62847A6Ca784e6416C1682b1b2Ae));
 
     // For reference only, subject to change in future
     // IVVSBoost VVSBoostV2 = IVVSBoost(0xC70B9317197c75b1E946540dDa9c36E7bcD06dBa);
 
     // Tokens
     // Refer to https://cronoscan.com/tokens
-    ICronosCRC20 USDT = ICronosCRC20(0x66e428c3f67a68878562e79A0234c1F83c208770);
+    ICronosCRC20 USDT =
+        ICronosCRC20(0x66e428c3f67a68878562e79A0234c1F83c208770);
     ICronosCRC20 BNB = ICronosCRC20(0xfA9343C3897324496A05fC75abeD6bAC29f8A40f);
-    ICronosCRC20 USDC = ICronosCRC20(0xc21223249CA28397B4B6541dfFaEcC539BfF0c59);
+    ICronosCRC20 USDC =
+        ICronosCRC20(0xc21223249CA28397B4B6541dfFaEcC539BfF0c59);
     ICronosCRC20 DAI = ICronosCRC20(0xF2001B145b43032AAF5Ee2884e456CCd805F677D);
-    ICronosCRC20 WETH = ICronosCRC20(0xe44Fd7fCb2b1581822D0c862B68222998a0c299a);
-    ICronosCRC20 WBTC = ICronosCRC20(0x062E66477Faf219F25D27dCED647BF57C3107d52);
+    ICronosCRC20 WETH =
+        ICronosCRC20(0xe44Fd7fCb2b1581822D0c862B68222998a0c299a);
+    ICronosCRC20 WBTC =
+        ICronosCRC20(0x062E66477Faf219F25D27dCED647BF57C3107d52);
 
     // Do NOT remove: Needed for exclusion
     ICronosCRC20 APE = ICronosCRC20(0x9C62F89a8C9907582f21205Ce90443730361EA05);
-    ICronosCRC20 DARK = ICronosCRC20(0x83b2AC8642aE46FC2823Bc959fFEB3c1742c48B5);
+    ICronosCRC20 DARK =
+        ICronosCRC20(0x83b2AC8642aE46FC2823Bc959fFEB3c1742c48B5);
     ICronosCRC20 SKY = ICronosCRC20(0x9D3BBb0e988D9Fb2d55d07Fe471Be2266AD9c81c);
-    ICronosCRC20 LCRO = ICronosCRC20(0x9Fae23A2700FEeCd5b93e43fDBc03c76AA7C08A6);
+    ICronosCRC20 LCRO =
+        ICronosCRC20(0x9Fae23A2700FEeCd5b93e43fDBc03c76AA7C08A6);
 
     IVVS VVS = IVVS(0x2D03bECE6747ADC00E1a131BBA1469C15fD11e03);
     IERC20 WCRO = IERC20(0x5C7F8A570d578ED84E63fdFA7b1eE72dEae1AE23);
@@ -43,11 +55,11 @@ contract CronosCommon is DSCommon {
 
     // Liquidity Pools
     // Refer to https://docs.vvs.finance/fundamentals/smart-contracts-and-security
-    IVVSPair WCRO_WETH_Pair = 
+    IVVSPair WCRO_WETH_Pair =
         IVVSPair(0xA111C17f8B8303280d3EB01BBcd61000AA7F39F9);
-    IVVSPair WBTC_WCRO_Pair = 
+    IVVSPair WBTC_WCRO_Pair =
         IVVSPair(0x8F09fFf247B8fDB80461E5Cf5E82dD1aE2EBd6d7);
-    IVVSPair WCRO_USDC_Pair = 
+    IVVSPair WCRO_USDC_Pair =
         IVVSPair(0xe61Db569E231B3f5530168Aa2C9D50246525b6d6);
     IVVSPair VVS_WCRO_Pair =
         IVVSPair(0xbf62c67eA509E86F07c8c69d0286C0636C50270b);
@@ -72,7 +84,9 @@ contract CronosCommon is DSCommon {
     // Pair = Factory.getPair(address(TONIC), address(VVS));
     // console.log("TONIC/VVS Pair: %s", Pair);
 
-    function setUp() public virtual {
+    function setUp2() public virtual {
+        super.setUp1();
+
         cheats.label(address(xUSD_3Pool), "xUSD_3Pool");
         cheats.label(address(Zap), "Zap");
         cheats.label(address(Vault), "Vault");

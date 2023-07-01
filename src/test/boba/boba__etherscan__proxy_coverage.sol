@@ -6,18 +6,18 @@ import "./boba__etherscan__common.sol";
 contract Proxy_Contract {
     function doSomething() public {
         require(msg.sender == address(0), "Only callable by address(0)");
-        
+
         // Code to be executed if the requirement is fulfilled
     }
 }
 
 contract Caller {
     Proxy_Contract public contractInstance;
-    
+
     constructor(address _contractAddress) {
         contractInstance = Proxy_Contract(_contractAddress);
     }
-    
+
     function callDoSomething() public {
         contractInstance.doSomething();
     }
@@ -26,8 +26,8 @@ contract Caller {
 contract boba_etherscan_proxy_Test is BobaEtherscanCommon {
     using SafeMath for uint256;
 
-    function setUp() public override {
-        super.setUp();
+    function setUp() public {
+        super.setUp2();
 
         cheats.createSelectFork("ethereum", 17405912);
         // cheats.createSelectFork("ethereum", 16989340);
@@ -37,7 +37,7 @@ contract boba_etherscan_proxy_Test is BobaEtherscanCommon {
     }
 
     function skip_test__address_zero() public {
-        // Deploy Proxy_Contract 
+        // Deploy Proxy_Contract
         Proxy_Contract proxy = new Proxy_Contract();
         Caller caller = new Caller(address(proxy));
         proxy.doSomething();
@@ -160,19 +160,19 @@ contract boba_etherscan_proxy_Test is BobaEtherscanCommon {
 
         // According to https://etherscan.io/address/0xdc1664458d2f0B6090bEa60A8793A4E66c2F1c00?utm_source=immunefi#code
         /*
-        * Makes a proxy call instead of triggering the given function when the caller is either the
-        * owner or the zero address. Caller can only ever be the zero address if this function is
-        * being called off-chain via eth_call, which is totally fine and can be convenient for
-        * client-side tooling. Avoids situations where the proxy and implementation share a sighash
-        * and the proxy function ends up being called instead of the implementation one.
-        *
-        * Note: msg.sender == address(0) can ONLY be triggered off-chain via eth_call. If there's a
-        * way for someone to send a transaction with msg.sender == address(0) in any real context then
-        * we have much bigger problems. Primary reason to include this additional allowed sender is
-        * because the owner address can be changed dynamically and we do not want clients to have to
-        * keep track of the current owner in order to make an eth_call that doesn't trigger the
-        * proxied contract.
-        */
+         * Makes a proxy call instead of triggering the given function when the caller is either the
+         * owner or the zero address. Caller can only ever be the zero address if this function is
+         * being called off-chain via eth_call, which is totally fine and can be convenient for
+         * client-side tooling. Avoids situations where the proxy and implementation share a sighash
+         * and the proxy function ends up being called instead of the implementation one.
+         *
+         * Note: msg.sender == address(0) can ONLY be triggered off-chain via eth_call. If there's a
+         * way for someone to send a transaction with msg.sender == address(0) in any real context then
+         * we have much bigger problems. Primary reason to include this additional allowed sender is
+         * because the owner address can be changed dynamically and we do not want clients to have to
+         * keep track of the current owner in order to make an eth_call that doesn't trigger the
+         * proxied contract.
+         */
         bytes memory data = abi.encodeWithSignature("getOwner()");
         // (bool success, bytes memory result) = address(proxy__L1__StandardBridge).call{value: 0, gas: gasleft()}(data);
         (bool success, bytes memory result) = a.delegatecall(data);
@@ -181,9 +181,6 @@ contract boba_etherscan_proxy_Test is BobaEtherscanCommon {
         // Decode the result
         address owner = abi.decode(result, (address));
 
-        emit log_named_address(
-            "owner",
-            owner
-        );
+        emit log_named_address("owner", owner);
     }
 }

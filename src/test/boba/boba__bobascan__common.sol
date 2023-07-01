@@ -5,7 +5,7 @@ import "template/ds_test_common.sol";
 import "interface/boba_bobascan_blockchain.sol";
 
 contract BobaBobascanCommon is DSCommon {
-    // Flashloan provider
+    // Swap or Flashloan provider
 
     // Governance
 
@@ -22,10 +22,15 @@ contract BobaBobascanCommon is DSCommon {
     // Tokens
 
     // Liquidity Pools
-    IOVM_SequencerFeeVault OVM_SequencerFeeVault = IOVM_SequencerFeeVault(payable(0x4200000000000000000000000000000000000011));
+    IOVM_SequencerFeeVault OVM_SequencerFeeVault =
+        IOVM_SequencerFeeVault(
+            payable(0x4200000000000000000000000000000000000011)
+        );
 
-    function setUp() public virtual {
-        // Assign label to Flashloan provider
+    function setUp2() public virtual {
+        super.setUp1();
+
+        // Assign label to Swap or Flashloan provider
 
         // Assign label to governance
 

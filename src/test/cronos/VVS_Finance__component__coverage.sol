@@ -6,8 +6,8 @@ import "./VVS_Finance__common.sol";
 contract ContractTest is CronosCommon {
     using SafeMath for uint256;
 
-    function setUp() public override {
-        super.setUp();
+    function setUp() public {
+        super.setUp2();
 
         cheats.createSelectFork("cronos", 8185555);
     }

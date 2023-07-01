@@ -45,13 +45,13 @@ import "./connext__bscscan__common.sol";
 //     }
 // }
 
-
+// For Proxy Vulnerability,
 // Refer to https://github.com/runtimeverification/foundry-upgradeable-contracts-examples/tree/master/test
 contract connext_bscscan_Proxy_Test is ConnextCommon {
     using SafeMath for uint256;
 
-    function setUp() public override {
-        super.setUp();
+    function setUp() public {
+        super.setUp2();
 
         cheats.createSelectFork("bsc", 29004971);
 
@@ -336,8 +336,8 @@ contract connext_bscscan_Proxy_Test is ConnextCommon {
         functionSelector[18]: 0xc4058429
         functionSelector[19]: 0xe9d7bcec
 
-        facetAddress[1]: 0xc41a071742a1f2ffe76d075205db90742c113608 => BridgeFacet (Inactive)
-        functionSelectors.length: 20
+        facetAddress[1]: 0xc41a071742a1f2ffe76d075205db90742c113608 => BridgeFacet (Inactive, ~80 days ago)
+        functionSelectors.length: 20 (17+3)
         functionSelector[0]: 0x8a336231
         functionSelector[1]: 0x159e041f
         functionSelector[2]: 0x2424401f
@@ -355,9 +355,9 @@ contract connext_bscscan_Proxy_Test is ConnextCommon {
         functionSelector[14]: 0x3339df96
         functionSelector[15]: 0x8aac16ba
         functionSelector[16]: 0x91f5de79
-        functionSelector[17]: 0x59efa162
-        functionSelector[18]: 0x93f18ac5
-        functionSelector[19]: 0x674dc933
+        functionSelector[17]: 0x59efa162 (new)
+        functionSelector[18]: 0x93f18ac5 (new)
+        functionSelector[19]: 0x674dc933 (new)
 
         facetAddress[2]: 0x5ccd25372a41eeb3d4e5353879bb28213df5a295 => InboxFacet (Inactive)
         functionSelectors.length: 1
@@ -559,7 +559,7 @@ contract connext_bscscan_Proxy_Test is ConnextCommon {
         functionSelector[18]: 0xc4058429
         functionSelector[19]: 0xe9d7bcec
 
-        facetAddress[1]: 0x1a92fc9ec2b55f6b0a5d33996349099623c9c4fc => BridgeFacet (Inactive)
+        facetAddress[1]: 0x1a92fc9ec2b55f6b0a5d33996349099623c9c4fc => BridgeFacet (Inactive, ~191 days ago)
         functionSelectors.length: 17
         functionSelector[0]: 0x8a336231
         functionSelector[1]: 0x159e041f

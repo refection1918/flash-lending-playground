@@ -6,8 +6,8 @@ import "./celer_etherscan__common.sol";
 contract cBridgeComponentTest is CelerCommon {
     using SafeMath for uint256;
 
-    function setUp() public override {
-        super.setUp();
+    function setUp() public {
+        super.setUp2();
 
         cheats.createSelectFork("ethereum", 17294568);
 
