@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import "template/ds_test_common.sol";
+import "template/etherscan__coins_and_tokens.sol";
 import "interface/boba_etherscan_blockchain.sol";
 
-contract BobaEtherscanCommon is DSCommon {
+contract BobaEtherscanCommon is EtherscanCommon {
     // Swap or Flashloan provider
 
     // Governance
@@ -29,16 +29,11 @@ contract BobaEtherscanCommon is DSCommon {
         address(0x13992B9f327faCA11568BE18a8ad3E9747e87d93);
 
     // Stable coins
-    ITetherToken USDT =
-        ITetherToken(0xdAC17F958D2ee523a2206206994597C13D831ec7);
-    IFiatTokenV2_1 USDC =
-        IFiatTokenV2_1(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48);
 
     // Tokens
     IBOBA BOBA = IBOBA(0x42bBFa2e77757C645eeaAd1655E0911a7553Efbc);
     IOMGToken OMG = IOMGToken(0xd26114cd6EE289AccF82350c8d8487fedB8A0C07);
     IWBTC WBTC = IWBTC(0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599);
-    IDAI DAI = IDAI(0x6B175474E89094C44Da98b954EedeAC495271d0F);
     IERC20 DODO = IERC20(0x43Dfc4159D86F3A37A5A4B3D4580b888ad7d4DDd);
 
     // Liquidity Pools
@@ -47,8 +42,8 @@ contract BobaEtherscanCommon is DSCommon {
     address L1__StandardBridge =
         address(0xAf41c681143Cb91f218959375f4452A604504833);
 
-    function setUp2() public virtual {
-        super.setUp1();
+    function setUp3() public virtual {
+        super.setUp2();
 
         // Assign label to Swap or Flashloan provider
 
@@ -77,12 +72,9 @@ contract BobaEtherscanCommon is DSCommon {
         cheats.label(address(ChainStorageContainer), "ChainStorageContainer");
 
         // Assign label to tokens
-        cheats.label(address(USDC), "USDC");
-        cheats.label(address(USDT), "USDT");
         cheats.label(address(BOBA), "BOBA");
         cheats.label(address(OMG), "OMG");
         cheats.label(address(WBTC), "WBTC");
-        cheats.label(address(DAI), "DAI");
         cheats.label(address(DODO), "DODO");
 
         // Assign label to LPs

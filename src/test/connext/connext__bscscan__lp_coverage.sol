@@ -3,7 +3,7 @@ pragma solidity ^0.8.19;
 
 import "./connext__bscscan__common.sol";
 
-contract connext_bscscan_LP_Test is ConnextCommon {
+contract connext_bscscan_LP_Test is ConnextBscscanCommon {
     using SafeMath for uint256;
 
     function setUp() public {
@@ -59,7 +59,9 @@ contract connext_bscscan_LP_Test is ConnextCommon {
         uint account_deposit_amount = DAI.balanceOf(
             address(ConnextDiamond_Proxy)
         );
-        writeTokenBalance(address(this), address(DAI), account_deposit_amount);
+        if (account_deposit_amount > 0) {
+            writeTokenBalance(address(this), address(DAI), account_deposit_amount);
+        }
 
         emit log_named_decimal_uint(
             "[Start] Attacker DAI balance before deposit",

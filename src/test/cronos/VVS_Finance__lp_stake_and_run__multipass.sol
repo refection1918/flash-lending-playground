@@ -53,11 +53,13 @@ contract ContractTest is CronosCommon {
                     // Fund the account with flashloan and/or cash
                     // uint account_deposit_amount = 443 * 1e9;
                     uint account_deposit_amount = 400 * 1e9;
-                    writeTokenBalance(
-                        address(this),
-                        address(USDC),
-                        account_deposit_amount
-                    );
+                    if (account_deposit_amount > 0) {
+                        writeTokenBalance(
+                            address(this),
+                            address(USDC),
+                            account_deposit_amount
+                        );
+                    }
 
                     emit log_named_decimal_uint(
                         "[Start] Attacker USDC balance before exploit",

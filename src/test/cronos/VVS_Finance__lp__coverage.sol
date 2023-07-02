@@ -37,7 +37,9 @@ contract ContractTest is CronosCommon {
 
         // Fund the account with flashloan and/or cash
         uint account_deposit_amount = 1_000 * 1e18;
-        writeTokenBalance(address(this), address(WETH), account_deposit_amount);
+        if (account_deposit_amount > 0) {
+            writeTokenBalance(address(this), address(WETH), account_deposit_amount);
+        }
 
         emit log_named_decimal_uint(
             "[Start] Attacker WETH balance before exploit",
@@ -100,7 +102,9 @@ contract ContractTest is CronosCommon {
 
         // Fund the account with flashloan and/or cash
         uint account_deposit_amount = 443 * 1e9;
-        writeTokenBalance(address(this), address(USDC), account_deposit_amount);
+        if (account_deposit_amount > 0) {
+            writeTokenBalance(address(this), address(USDC), account_deposit_amount);
+        }
 
         emit log_named_decimal_uint(
             "[Start] Attacker USDC balance before exploit",
@@ -162,7 +166,9 @@ contract ContractTest is CronosCommon {
 
         // Fund the account with flashloan and/or cash
         uint account_deposit_amount = 443 * 1e9;
-        writeTokenBalance(address(this), address(USDC), account_deposit_amount);
+        if (account_deposit_amount > 0) {
+            writeTokenBalance(address(this), address(USDC), account_deposit_amount);
+        }
 
         emit log_named_decimal_uint(
             "[Start] Attacker USDC balance before exploit",
@@ -224,7 +230,9 @@ contract ContractTest is CronosCommon {
 
         // Fund the account with flashloan and/or cash
         uint account_deposit_amount = 374_464 * 1e9;
-        writeTokenBalance(address(this), address(USDC), account_deposit_amount);
+        if (account_deposit_amount > 0) {
+            writeTokenBalance(address(this), address(USDC), account_deposit_amount);
+        }
 
         emit log_named_decimal_uint(
             "[Start] Attacker USDC balance before exploit",
@@ -286,7 +294,9 @@ contract ContractTest is CronosCommon {
 
         // Fund the account with flashloan and/or cash
         uint account_deposit_amount = 600 * 1e9;
-        writeTokenBalance(address(this), address(USDT), account_deposit_amount);
+        if (account_deposit_amount > 0) {
+            writeTokenBalance(address(this), address(USDT), account_deposit_amount);
+        }
 
         emit log_named_decimal_uint(
             "[Start] Attacker USDT balance before exploit",
@@ -348,7 +358,9 @@ contract ContractTest is CronosCommon {
 
         // Fund the account with flashloan and/or cash
         uint account_deposit_amount = 1_000_000_000 * 1e18;
-        writeTokenBalance(address(this), address(DAI), account_deposit_amount);
+        if (account_deposit_amount > 0) {
+            writeTokenBalance(address(this), address(DAI), account_deposit_amount);
+        }
 
         emit log_named_decimal_uint(
             "[Start] Attacker DAI balance before exploit",
@@ -411,7 +423,9 @@ contract ContractTest is CronosCommon {
 
         // Fund the account with flashloan and/or cash
         uint account_deposit_amount = 1_000 * 1e15;
-        writeTokenBalance(address(this), address(USDT), account_deposit_amount);
+        if (account_deposit_amount > 0) {
+            writeTokenBalance(address(this), address(USDT), account_deposit_amount);
+        }
 
         emit log_named_decimal_uint(
             "[Start] Attacker USDT balance before exploit",
@@ -473,7 +487,9 @@ contract ContractTest is CronosCommon {
 
         // Fund the account with flashloan and/or cash
         uint account_deposit_amount = 600 * 1e9;
-        writeTokenBalance(address(this), address(USDC), account_deposit_amount);
+        if (account_deposit_amount > 0) {
+            writeTokenBalance(address(this), address(USDC), account_deposit_amount);
+        }
 
         emit log_named_decimal_uint(
             "[Start] Attacker USDC balance before exploit",
@@ -535,7 +551,9 @@ contract ContractTest is CronosCommon {
 
         // Fund the account with flashloan and/or cash
         uint account_deposit_amount = 443 * 1e9;
-        writeTokenBalance(address(this), address(USDC), account_deposit_amount);
+        if (account_deposit_amount > 0) {
+            writeTokenBalance(address(this), address(USDC), account_deposit_amount);
+        }
 
         emit log_named_decimal_uint(
             "[Start] Attacker USDC balance before exploit",

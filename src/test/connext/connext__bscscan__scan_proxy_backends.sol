@@ -5,7 +5,7 @@ import "./connext__bscscan__common.sol";
 
 // For Proxy Vulnerability,
 // Refer to https://github.com/runtimeverification/foundry-upgradeable-contracts-examples/tree/master/test
-contract connext_bscscan_Proxy_Test is ConnextCommon {
+contract connext_bscscan_Proxy_Test is ConnextBscscanCommon {
     using SafeMath for uint256;
 
     function setUp() public {

@@ -472,6 +472,7 @@ interface IPortalFacet is IErrorAssetLogic, IErrorBaseConnextFacet {
     error PortalFacet__repayAavePortal_assetNotApproved();
     error PortalFacet__repayAavePortal_insufficientFunds();
     error PortalFacet__setAavePortalFee_invalidFee();
+
     event AavePoolUpdated(address updated, address caller);
     event AavePortalFeeUpdated(uint256 updated, address caller);
     event AavePortalRepayment(

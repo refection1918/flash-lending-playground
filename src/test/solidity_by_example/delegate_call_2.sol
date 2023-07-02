@@ -95,12 +95,9 @@ contract delegate_call_storage_exploit_Test is DSCommon {
             0
         );
 
-        emit log_named_address(
-            "[Start] hackMe.owner",
-            hackMe.owner()
-        );
+        emit log_named_address("[Start] hackMe.owner", hackMe.owner());
 
-        dumpContinuousSlotData(address(hackMe), 0, 2);
+        dumpContinuousSlotData(address(hackMe), 0, 2, false);
 
         attacker.attack();
 
@@ -116,11 +113,8 @@ contract delegate_call_storage_exploit_Test is DSCommon {
             0
         );
 
-        emit log_named_address(
-            "[End] hackMe.owner",
-            hackMe.owner()
-        );
+        emit log_named_address("[End] hackMe.owner", hackMe.owner());
 
-        dumpContinuousSlotData(address(hackMe), 0, 2);
+        dumpContinuousSlotData(address(hackMe), 0, 2, false);
     }
 }

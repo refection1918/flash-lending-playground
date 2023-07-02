@@ -5,7 +5,7 @@ import "template/ds_test_common.sol";
 import "interface/connext_bscscan_blockchain.sol";
 import "interface/pancake_bscscan_flashloan.sol";
 
-contract ConnextCommon is DSCommon {
+contract ConnextBscscanCommon is DSCommon {
     // Swap or Flashloan provider
     // // Use test__query_specific_pair() to identify the pancake pair
     // Uni_Pair_V2 DAI_USDC_Pair =

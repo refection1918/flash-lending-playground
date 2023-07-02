@@ -27,7 +27,7 @@ contract boba_etherscan_proxy_Test is BobaEtherscanCommon {
     using SafeMath for uint256;
 
     function setUp() public {
-        super.setUp2();
+        super.setUp3();
 
         cheats.createSelectFork("ethereum", 17405912);
         // cheats.createSelectFork("ethereum", 16989340);
@@ -174,8 +174,9 @@ contract boba_etherscan_proxy_Test is BobaEtherscanCommon {
          * proxied contract.
          */
         bytes memory data = abi.encodeWithSignature("getOwner()");
-        // (bool success, bytes memory result) = address(proxy__L1__StandardBridge).call{value: 0, gas: gasleft()}(data);
-        (bool success, bytes memory result) = a.delegatecall(data);
+        (bool success, bytes memory result) = address(proxy__L1__StandardBridge)
+            .call{value: 0, gas: gasleft()}(data);
+        // (bool success, bytes memory result) = a.delegatecall(data);
         require(success, "eth_call failed");
 
         // Decode the result

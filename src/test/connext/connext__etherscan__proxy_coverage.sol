@@ -5,11 +5,11 @@ import "./connext__etherscan__common.sol";
 
 // For Proxy Vulnerability,
 // Refer to https://github.com/runtimeverification/foundry-upgradeable-contracts-examples/tree/master/test
-contract connext_etherscan_Proxy_Test is ConnextCommon {
+contract connext_etherscan_Proxy_Test is ConnextEtherscanCommon {
     using SafeMath for uint256;
 
     function setUp() public {
-        super.setUp2();
+        super.setUp3();
 
         cheats.createSelectFork("ethereum", 17599948);
 

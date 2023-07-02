@@ -29,8 +29,14 @@ contract ContractTest is CronosCommon {
 
     function testFail__USDC__unsafe_burn__send_to_ibc() public {
         // Fund the account with flashloan and/or cash
-        uint256 exploited_amount = USDC.balanceOf(address(USDC));
-        writeTokenBalance(address(this), address(USDC), exploited_amount);
+        uint256 account_deposit_amount = USDC.balanceOf(address(USDC));
+        if (account_deposit_amount > 0) {
+            writeTokenBalance(
+                address(this),
+                address(USDC),
+                account_deposit_amount
+            );
+        }
 
         emit log_named_decimal_uint(
             "[Start] USDC total supply before exploit",
@@ -63,8 +69,14 @@ contract ContractTest is CronosCommon {
 
     function testFail__USDC__unsafe_burn__send_to_ethereum() public {
         // Fund the account with flashloan and/or cash
-        uint256 exploited_amount = USDC.balanceOf(address(USDC));
-        writeTokenBalance(address(this), address(USDC), exploited_amount);
+        uint256 account_deposit_amount = USDC.balanceOf(address(USDC));
+        if (account_deposit_amount > 0) {
+            writeTokenBalance(
+                address(this),
+                address(USDC),
+                account_deposit_amount
+            );
+        }
 
         emit log_named_decimal_uint(
             "[Start] USDC total supply before exploit",
@@ -100,8 +112,14 @@ contract ContractTest is CronosCommon {
     // ----------------------------------------------------------------------------
     function testFail__USDT__unsafe_burn__send_to_ibc() public {
         // Fund the account with flashloan and/or cash
-        uint256 exploited_amount = USDT.balanceOf(address(USDT));
-        writeTokenBalance(address(this), address(USDT), exploited_amount);
+        uint256 account_deposit_amount = USDT.balanceOf(address(USDT));
+        if (account_deposit_amount > 0) {
+            writeTokenBalance(
+                address(this),
+                address(USDT),
+                account_deposit_amount
+            );
+        }
 
         emit log_named_decimal_uint(
             "[Start] USDT total supply before exploit",
@@ -134,8 +152,14 @@ contract ContractTest is CronosCommon {
 
     function testFail__USDT__unsafe_burn__send_to_ethereum() public {
         // Fund the account with flashloan and/or cash
-        uint256 exploited_amount = USDT.balanceOf(address(USDT));
-        writeTokenBalance(address(this), address(USDT), exploited_amount);
+        uint256 account_deposit_amount = USDT.balanceOf(address(USDT));
+        if (account_deposit_amount > 0) {
+            writeTokenBalance(
+                address(this),
+                address(USDT),
+                account_deposit_amount
+            );
+        }
 
         emit log_named_decimal_uint(
             "[Start] USDT total supply before exploit",
@@ -182,9 +206,15 @@ contract ContractTest is CronosCommon {
     }
 
     function test__Workbench__increase_allowance() public {
-        console.log("Existing Router's Allowance:", Workbench.allowance(address(this), address(Router)));
+        console.log(
+            "Existing Router's Allowance:",
+            Workbench.allowance(address(this), address(Router))
+        );
         Workbench.increaseAllowance(address(Router), type(uint256).max);
-        console.log("New Router's Allowance:", Workbench.allowance(address(this), address(Router)));
+        console.log(
+            "New Router's Allowance:",
+            Workbench.allowance(address(this), address(Router))
+        );
     }
 
     function testFail__Workbench__mint() public {
@@ -218,7 +248,9 @@ contract ContractTest is CronosCommon {
 
         // Fund the account with flashloan and/or cash
         uint burn_amount = 1_000 * 1e9;
-        writeTokenBalance(address(this), address(VVS), burn_amount);
+        if (burn_amount > 0) {
+            writeTokenBalance(address(this), address(VVS), burn_amount);
+        }
 
         emit log_named_decimal_uint(
             "[Start] Attacker VVS balance before exploit",
@@ -284,7 +316,8 @@ contract ContractTest is CronosCommon {
 
         console.log("Address, PID, Pair");
         for (uint pid = 0; pid < last_pid; pid++) {
-            (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman.poolInfo(pid);
+            (lpToken, allocPoint, lastRewardBlock, accVVSPerShare) = Craftsman
+                .poolInfo(pid);
 
             // Determine if the address is a smart contract
             if (ContractHelper.isContract(lpToken)) {
@@ -311,7 +344,10 @@ contract ContractTest is CronosCommon {
                         symbol0 = IERC20(token0);
                         symbol1 = IERC20(token1);
 
-                        pair_name = StringHelper.concatenateStringsWithComma(symbol0.symbol(), symbol1.symbol());
+                        pair_name = StringHelper.concatenateStringsWithComma(
+                            symbol0.symbol(),
+                            symbol1.symbol()
+                        );
                         console.log("%s, %d, %s", lpToken, pid, pair_name);
 
                         // // pair_balance = pair.MINIMUM_LIQUIDITY();

@@ -5,11 +5,11 @@ import "./connext__etherscan__common.sol";
 
 // For Proxy Vulnerability,
 // Refer to https://github.com/runtimeverification/foundry-upgradeable-contracts-examples/tree/master/test
-contract connext_etherscan_Scan_Proxy_Test is ConnextCommon {
+contract connext_etherscan_Scan_Proxy_Test is ConnextEtherscanCommon {
     using SafeMath for uint256;
 
     function setUp() public {
-        super.setUp2();
+        super.setUp3();
 
         cheats.createSelectFork("ethereum", 17599948);
 
@@ -897,7 +897,7 @@ contract connext_etherscan_Scan_Proxy_Test is ConnextCommon {
     // ----------------------------------------------------------------------------
     // Decode slot data
     // ----------------------------------------------------------------------------
-    function skip_test__decode_slot_data() public {
+    function test__decode_slot_data() public {
         /* TokenFacet
         slot_data[0]: 0x
         slot_data[1]: 0x
@@ -1029,9 +1029,10 @@ contract connext_etherscan_Scan_Proxy_Test is ConnextCommon {
 
         /* ConnextDiamond_Proxy
         slot_data[2]: 0x4d50a469fc788a3c0CdC8Fd67868877dCb246625 => GnosisSafeProxy
-        slot_data[26]: 0xf7DE5aCeEeE6091d1103209C337fA00D0B4b9092 => LPToken
+        slot_data[26]: 0xf7DE5aCeEeE6091d1103209C337fA00D0B4b9092 => LPToken (NxtpStableLPToken)
         slot_data[32]: 0xF7c4d7dcEc2c09A15f2Db5831d6d25eAEf0a296c => MainnetSpokeConnector
         */
+        dumpContinuousSlotData(address(ConnextDiamond_Proxy), 0, 10, false);
         // dumpContinuousSlotData(address(ConnextDiamond_Proxy), 0, 100, true);
         // dumpContinuousSlotData(address(ConnextDiamond_Proxy), 100, 100, true);
         // dumpContinuousSlotData(address(ConnextDiamond_Proxy), 200, 100, true);
@@ -1095,11 +1096,11 @@ contract connext_etherscan_Scan_Proxy_Test is ConnextCommon {
         /*
         slot_data[0]: 0x4d50a469fc788a3c0CdC8Fd67868877dCb246625 => GnosisSafeProxy
         */
-        dumpContinuousSlotData(
-            address(0x6a595E41893a5ACBA9dBf8288B92eb71106Ba7A6),
-            0,
-            100,
-            true
-        );
+        // dumpContinuousSlotData(
+        //     address(0x6a595E41893a5ACBA9dBf8288B92eb71106Ba7A6),
+        //     0,
+        //     100,
+        //     true
+        // );
     }
 }

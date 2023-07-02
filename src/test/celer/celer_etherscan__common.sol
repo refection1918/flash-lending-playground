@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import "template/ds_test_common.sol";
+import "template/etherscan__coins_and_tokens.sol";
 import "interface/celer_etherscan_blockchain.sol";
 
 import "./Pb.sol";
 
-contract CelerCommon is DSCommon {
+contract CelerCommon is EtherscanCommon {
     // Swap or Flashloan provider
 
     // Protocol
@@ -16,10 +16,6 @@ contract CelerCommon is DSCommon {
         IERC20(0x98E9D288743839e96A8005a6B51C770Bbf7788C0);
 
     // Tokens
-    ITetherToken USDT =
-        ITetherToken(0xdAC17F958D2ee523a2206206994597C13D831ec7);
-    IFiatTokenV2_1 USDC =
-        IFiatTokenV2_1(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48);
     IMaskToken MASK = IMaskToken(0x69af81e73A73B40adF4f3d4223Cd9b1ECE623074);
     IWETH9 WETH = IWETH9(payable(0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2));
 
@@ -54,8 +50,8 @@ contract CelerCommon is DSCommon {
         bytes32 refid; // tag: 6
     } // end struct WithdrawMsg
 
-    function setUp2() public virtual {
-        super.setUp1();
+    function setUp3() public virtual {
+        super.setUp2();
 
         // Assign label to Swap or Flashloan provider
 
@@ -63,8 +59,6 @@ contract CelerCommon is DSCommon {
         cheats.label(address(relay_executor_2), "Relay Executor 2");
 
         // Assign label to tokens
-        cheats.label(address(USDC), "USDC");
-        cheats.label(address(USDT), "USDT");
         cheats.label(address(MASK), "MASK");
         cheats.label(address(WETH), "WETH");
 

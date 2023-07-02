@@ -3,7 +3,7 @@ pragma solidity ^0.8.19;
 
 import "./connext__bscscan__common.sol";
 
-contract connext_bscscan_Swap_Test is ConnextCommon {
+contract connext_bscscan_Swap_Test is ConnextBscscanCommon {
     using SafeMath for uint256;
 
     function setUp() public {
@@ -115,12 +115,14 @@ contract connext_bscscan_Swap_Test is ConnextCommon {
                 "Impersonated_Account"
             );
         } else {
-            // Fund the account with flashloan and/or cash
-            writeTokenBalance(
-                attacker_contract_address,
-                address(B_USDC),
-                account_deposit_amount
-            );
+            if (account_deposit_amount > 0) {
+                // Fund the account with flashloan and/or cash
+                writeTokenBalance(
+                    attacker_contract_address,
+                    address(B_USDC),
+                    account_deposit_amount
+                );
+            }
         }
 
         emit log_named_decimal_uint(
@@ -205,12 +207,14 @@ contract connext_bscscan_Swap_Test is ConnextCommon {
                 "Impersonated_Account"
             );
         } else {
-            // Fund the account with flashloan and/or cash
-            writeTokenBalance(
-                attacker_contract_address,
-                address(B_USDC),
-                account_deposit_amount
-            );
+            if (account_deposit_amount > 0) {
+                // Fund the account with flashloan and/or cash
+                writeTokenBalance(
+                    attacker_contract_address,
+                    address(B_USDC),
+                    account_deposit_amount
+                );
+            }
         }
 
         emit log_named_decimal_uint(
@@ -267,12 +271,14 @@ contract connext_bscscan_Swap_Test is ConnextCommon {
                 "Impersonated_Account"
             );
         } else {
-            // Fund the account with flashloan and/or cash
-            writeTokenBalance(
-                attacker_contract_address,
-                address(nextUSDC),
-                account_deposit_amount
-            );
+            if (account_deposit_amount > 0) {
+                // Fund the account with flashloan and/or cash
+                writeTokenBalance(
+                    attacker_contract_address,
+                    address(nextUSDC),
+                    account_deposit_amount
+                );
+            }
         }
 
         emit log_named_decimal_uint(
@@ -366,12 +372,14 @@ contract connext_bscscan_Swap_Test is ConnextCommon {
                 "Impersonated_Account"
             );
         } else {
-            // Fund the account with flashloan and/or cash
-            writeTokenBalance(
-                attacker_contract_address,
-                address(nextDAI),
-                account_deposit_amount
-            );
+            if (account_deposit_amount > 0) {
+                // Fund the account with flashloan and/or cash
+                writeTokenBalance(
+                    attacker_contract_address,
+                    address(nextDAI),
+                    account_deposit_amount
+                );
+            }
         }
 
         emit log_named_decimal_uint(
