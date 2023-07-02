@@ -72,20 +72,14 @@ contract delegate_call_storage_exploit_Test is DSCommon {
         HackMe hackMe = new HackMe(lib);
         Attack attacker = new Attack(address(hackMe));
 
-        emit log_named_address(
-            "[Start] hackMe.owner",
-            hackMe.owner()
-        );
+        emit log_named_address("[Start] hackMe.owner", hackMe.owner());
 
-        dumpContinuousSlotData(address(hackMe), 0, 2);
+        dumpContinuousSlotData(address(hackMe), 0, 2, true);
 
         attacker.attack();
 
-        emit log_named_address(
-            "[End] hackMe.owner",
-            hackMe.owner()
-        );
+        emit log_named_address("[End] hackMe.owner", hackMe.owner());
 
-        dumpContinuousSlotData(address(hackMe), 0, 2);
+        dumpContinuousSlotData(address(hackMe), 0, 2, true);
     }
 }

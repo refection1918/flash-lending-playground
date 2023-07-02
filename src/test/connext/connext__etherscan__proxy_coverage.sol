@@ -1,59 +1,17 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import "./connext__bscscan__common.sol";
-
-// contract Attack {
-//     address public hackMe;
-
-//     constructor(address _hackMe) {
-//         hackMe = _hackMe;
-//     }
-
-//     function attack() public {
-//         hackMe.call(abi.encodeWithSignature("pwn()"));
-//     }
-// }
-
-// contract DiamondInitialization {
-//     bytes32[] public diamondCut;
-
-//     constructor(bytes32[] memory _diamondCut) {
-//         diamondCut = _diamondCut;
-//     }
-
-//     fallback() external payable {
-//         address facet = address(bytes20(diamondCut[0]));
-//         bytes memory data = abi.encodeWithSelector(
-//             bytes4(keccak256("initializeDiamondCut(bytes32[])")),
-//             diamondCut
-//         );
-
-//         assembly {
-//             let result := delegatecall(gas(), facet, add(data, 0x20), mload(data), 0, 0)
-//             let size := returndatasize()
-//             let ptr := mload(0x40)
-//             returndatacopy(ptr, 0, size)
-//             switch result
-//             case 0 {
-//                 revert(ptr, size)
-//             }
-//             default {
-//                 return(ptr, size)
-//             }
-//         }
-//     }
-// }
+import "./connext__etherscan__common.sol";
 
 // For Proxy Vulnerability,
 // Refer to https://github.com/runtimeverification/foundry-upgradeable-contracts-examples/tree/master/test
-contract connext_bscscan_Proxy_Test is ConnextCommon {
+contract connext_etherscan_Proxy_Test is ConnextCommon {
     using SafeMath for uint256;
 
     function setUp() public {
         super.setUp2();
 
-        cheats.createSelectFork("bsc", 29004971);
+        cheats.createSelectFork("ethereum", 17599948);
 
         // Pre-load tokens
         // writeTokenBalance(address(this), fl_token, payback_fee_amount);
