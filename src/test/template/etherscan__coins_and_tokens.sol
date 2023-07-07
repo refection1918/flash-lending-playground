@@ -20,8 +20,8 @@ contract EtherscanCommon is DSCommon {
         super.setUp1();
 
         // Assign label to Stable coins
-        cheats.label(address(USDC), "USDC");
         cheats.label(address(USDT), "USDT");
+        cheats.label(address(USDC), "USDC");
         cheats.label(address(DAI), "DAI");
 
         // Assign label to tokens

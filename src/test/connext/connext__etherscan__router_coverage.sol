@@ -3,7 +3,7 @@ pragma solidity ^0.8.19;
 
 import "./connext__etherscan__common.sol";
 
-contract connext_etherscan_Bridge_Test is ConnextEtherscanCommon {
+contract connext_etherscan_Router_Test is ConnextEtherscanCommon {
     using SafeMath for uint256;
 
     function setUp() public {
